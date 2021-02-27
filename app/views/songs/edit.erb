@@ -1,0 +1,65 @@
+<h1>Edit Song</h1>
+<a href="/songs/<%= @song.slug %>">Back to Song</a>
+<form action="/songs/<%= @song.slug %>" method="POST">
+  <input type="hidden" name="_method" value="patch">
+  <p>
+    <label for="Name">Title : </label>  
+    <input type="text" name="song[name]" id="Name" value="<%= @song.name %>">
+  </p>
+
+  <h3>= Artist =</h3>
+  <input type="text" name="artist[name]" id="Artist Name">
+  <h4>or Choose Artist Name</h4>
+  <% @artists.each do |artist| %>
+  <p>
+    <label for="artist_<%= artist.id %>"></label>
+    <input type="radio" name="artist[id]" value="<%= artist.id %>" id="<%= artist.id %>" <%= "checked" if artist == @song.artist %>> by <%= artist.name %>
+  </p>
+  <% end %>
+
+  <h3>= Genres =</h3>
+  <% @genres.each do |genre| %>
+    <p>
+      <label for="<%= genre.name %>"></label>
+      <input type="checkbox" name="genres[name][]" value="<%= genre.name %>" id="<%= genre.name %>" <%= "checked" if @song.genres.include?(genre) %>><%= genre.name %>
+    </p>
+  <% end %>
+  <h3>Add Genre, if needed</h3>
+  <input type="text" name="genres[name][]" id="Genre Name">
+
+  <br><br>
+  <input type="submit" value="Save">
+</form>
+
+<a href="/songs/<%= @song.id %>">Back to Song</a>
+<!-- <a href="/songs/<%= @song.slug %>">Back to Song</a>
+<form action="/songs/<%= @song.slug %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <p>
+    <label for="Name">Title : </label>  
+    <input type="text" name="song[name]" id="Name" value="<%= @song.name %>">
+  </p>
+
+  <h3>Choose Artist</h3>
+  <% @artists.each do |artist| %>
+    <p>
+      <label for="artist_<%= artist.id %>"></label>
+      <input type="radio" name="artist[id]" value="<%= artist.id %>" id="artist_<%= artist.id %>"<% if artist == @song.artist %>checked<% end %>> by <%= artist.name %>
+    </p>
+  <% end %>
+  <h3>or Create Artist</h3>
+  <input type="text" name="artist[name]" id="Artist Name">
+
+  <h3>Choose Genre</h3>
+  <% @genres.each do |genre| %>
+    <p>
+      <label for="<%= genre.name %>"></label>
+      <input type="checkbox" name="genre[name][]" value="<%= genre.name %>" id="<%= genre.name %>"<% if @song.genres.include?(genre) %>checked<% end %>> by <%= genre.name %>
+    </p>
+  <% end %>
+  <h3>Create Genre</h3>
+  <input type="text" name="genre[name][]" id="Genre Name">
+
+  <br>
+  <input type="submit" value="Save">
+</form> -->

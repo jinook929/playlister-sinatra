@@ -1,0 +1,51 @@
+<!-- <h1>Add a New Song</h1>
+
+<form action="/songs" method="POST">
+  <label for="name">Name</label>
+  <input type="text" name="song[name]" id="name"> </br>
+
+  <label for="artist_name">Artist Name</label>
+  <input type="text" name="artist[name]" id="artist_name"> </br>
+
+  <label> Genres </label>
+  <% Genre.all.each do |genre| %>
+    <input id="<%= genre.name %>" type="checkbox" name="genres[]" value="<%= genre.id %>"><%= genre.name %>
+  <% end %>
+
+  <input type="submit" value="Create">
+</form> -->
+
+<!-- ########################################################### -->
+
+<h1>Submit New Song</h1>
+<form action="/songs" method="post">
+  <p>
+    <label for="Name">Title : </label>  
+    <input type="text" name="song[name]" id="Name">
+  </p>
+
+  <h3>= Artist =</h3>
+  <input type="text" name="artist[name]" id="Artist Name">
+  <h4>or Choose Artist Name</h4>
+  <% @artists.each do |artist| %>
+  <p>
+    <label for="artist_<%= artist.id %>"></label>
+    <input type="radio" name="artist[id]" value="<%= artist.id %>" id="<%= artist.id %>"> by <%= artist.name %>
+  </p>
+  <% end %>
+
+  <h3>= Genres =</h3>
+  <% @genres.each do |genre| %>
+    <p>
+      <label for="<%= genre.name %>"></label>
+      <input type="checkbox" name="genres[name][]" value="<%= genre.name %>" id="<%= genre.name %>"><%= genre.name %>
+    </p>
+  <% end %>
+  <h3>Add Genre, if needed</h3>
+  <input type="text" name="genres[name][]" id="Genre Name">
+
+  <br><br>
+  <input type="submit" value="Create">
+</form>
+
+<a href="/songs">Back to List</a>
